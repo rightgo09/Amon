@@ -286,6 +286,10 @@ This method returns relative URI.
 
 This method render HTML.
 
+=item $c->streaming($body: CodeRef) : Plack::Web::Response
+
+This method stream the content.
+
 =item $c->encoding()
 
 Return a encoding object using C<< Encode::find_encoding() >>.
