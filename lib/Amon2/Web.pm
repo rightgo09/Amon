@@ -139,12 +139,10 @@ sub to_app {
             return $response->finalize;
         }
         else { # Streaming
+            my ($status, $headers) = @{ $response->finalize };
             return sub {
                 my ($responder) = @_;
-                my $writer = $responder->([
-                    $response->status,
-                    $response->headers,
-                ]);
+                my $writer = $responder->([ $status, $headers ]);
                 $response->wait_for_events->($writer);
             };
         }
